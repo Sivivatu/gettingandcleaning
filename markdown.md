@@ -1,5 +1,5 @@
 ---
-title: "Codebook Markdown for Getting and Cleaning Data Course Project.md"
+title: "Codebook for Getting and Cleaning Data Course Project.md"
 author: "Paul Houghton"
 date: "Monday, July 21, 2014"
 output: html_document
@@ -9,27 +9,21 @@ This is a codebook describing the process I used for the completion of the getti
 
 The first section of the code is where the data is sourced. It was downloaded from the commented out url in line 1 then manually unzipped and placed in a folder at the same level as the RStudio project.
 
-The next section (lines 2- 28) was the process for importing the test data, relabelling the column headers then combining into a single dataframe.
+The next section (lines 2- 34) was the process for importing the test data, relabelling the column headers then combining into a single dataframe.
+The features data frame (lables taken from the features.txt file) has the extra punctuation "-", "(" & "(" are removed using the gsub command. this vector is then used as the names for the data set.
 
-The import process was repeated in the next section (lines 30- ) to import and process the training data.
+The import process was repeated in the next section (lines 36-60) to import and process the training data.
 
+Using factor replacement the numeric class identifiers are replaced with the descriptive name from the activity_lables data.frame. This column is then relabeled to "activity".
 
+The columns selected are any columns with either "mean" or "std" in the variable name. the variable name is listed in the features.txt file that came in the source data. This data set will mean any spacial information for each of the sensor types can be analysed.
 
+All extra data and varibles are then removed leaving only the tidydata frame left for summary analysis.
 
+the tidydata frame is then summarised by each activity factor for each column using the data.table package. This summary table is then written to a .txt file for uploading for the final submission.
 
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+To read the file back into R use the code:
 
 ```{r}
-summary(cars)
+check <- read.table("tidysummary.txt", sep = " ", header =T)
 ```
-
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
