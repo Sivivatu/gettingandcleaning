@@ -79,7 +79,6 @@ summarycolumns <- summarycolumns[3:81]
 tidysummary <- data.table(tidydata)
 attach(tidysummary)
 setkey(tidysummary, subject)
-summary <- tidysummary[, lapply(.SD,mean), by=activity]
-summary <- summary[,-grep("subject", names(summary)), with=F]
+summary <- tidysummary[, lapply(.SD,mean), by=list(subject,activity)]
 detach(tidysummary)
 write.table(summary, "tidysummary.txt", row.names=F)
