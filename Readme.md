@@ -1,11 +1,12 @@
 ---
-title: "Codebook for Getting and Cleaning Data Course Project.md"
+title: "Readme for Getting and Cleaning Data Course Project"
 author: "Paul Houghton"
-date: "Monday, July 21, 2014"
+date: "Friday, July 25, 2014"
 output: html_document
 ---
 
-This is a codebook describing the process I used for the completion of the getting and cleaning data course project .
+
+This is a readme describing the process I used for the completion of the getting and cleaning data course project .
 
 The first section of the code is where the data is sourced. It was downloaded from the commented out url in line 1 then manually unzipped and placed in a folder at the same level as the RStudio project.
 
@@ -25,5 +26,5 @@ the tidydata frame is then summarised by each activity factor for each column us
 To read the file back into R use the code:
 
 ```{r}
-check <- read.table("tidysummary.txt", sep = " ", header =T)
+read.table("tidysummary.txt", sep = " ", header =T, row.names=F)
 ```
